@@ -31,7 +31,7 @@ const operate = (op, x, y) => {
     }
 }
 
-const maxLength = 16;
+const maxLength = 12;
 
 const resultsViewport = document.querySelector('#results-viewport')
 resultsViewport.textContent = '';
@@ -43,17 +43,25 @@ const one = document.querySelector('#one');
 
 one.addEventListener('click', () => { 
     if(resultsViewport.textContent.length < maxLength) {
-        resultsViewport.textContent += 1;
-        //feedViewport.textContent += 1;
+        if(resultsViewport.textContent === '0') {
+            clearResults();
+            resultsViewport.textContent = 1;
+        } else {
+            resultsViewport.textContent += 1;
+        }
     }
 });
 
 const two = document.querySelector('#two');
 
 two.addEventListener('click', () => { 
-    if(resultsViewport.textContent.length < maxLength){
-        resultsViewport.textContent += 2;
-        //feedViewport.textContent += 2;
+    if(resultsViewport.textContent.length < maxLength) {
+        if(resultsViewport.textContent === '0') {
+            clearResults();
+            resultsViewport.textContent = 2;
+        } else {
+            resultsViewport.textContent += 2;
+        }
     }
 });
 
@@ -61,80 +69,104 @@ const three = document.querySelector('#three');
 
 three.addEventListener('click', () => { 
     if(resultsViewport.textContent.length < maxLength) {
-        resultsViewport.textContent += 3;
-        //feedViewport.textContent += 3;
+        if(resultsViewport.textContent === '0') {
+            clearResults();
+            resultsViewport.textContent = 3;
+        } else {
+            resultsViewport.textContent += 3;
+        }
     }
-
 });
 
 const four = document.querySelector('#four');
 
 four.addEventListener('click', () => { 
     if(resultsViewport.textContent.length < maxLength) {
-        resultsViewport.textContent += 4;
-        //feedViewport.textContent += 4;
+        if(resultsViewport.textContent === '0') {
+            clearResults();
+            resultsViewport.textContent = 4;
+        } else {
+            resultsViewport.textContent += 4;
+        }
     }
-
 });
 
 const five = document.querySelector('#five');
 
 five.addEventListener('click', () => { 
     if(resultsViewport.textContent.length < maxLength) {
-        resultsViewport.textContent += 5;
-        //feedViewport.textContent += 5;
+        if(resultsViewport.textContent === '0') {
+            clearResults();
+            resultsViewport.textContent = 5;
+        } else {
+            resultsViewport.textContent += 5;
+        }
     }
-
 });
 
 const six = document.querySelector('#six');
 
 six.addEventListener('click', () => { 
     if(resultsViewport.textContent.length < maxLength) {
-        resultsViewport.textContent += 6;
-        //feedViewport.textContent += 6;
-    } 
-
+        if(resultsViewport.textContent === '0') {
+            clearResults();
+            resultsViewport.textContent = 6;
+        } else {
+            resultsViewport.textContent += 6;
+        }
+    }
 });
 
 const seven = document.querySelector('#seven');
 
 seven.addEventListener('click', () => { 
     if(resultsViewport.textContent.length < maxLength) {
-        resultsViewport.textContent += 7;
-        //feedViewport.textContent += 7;
+        if(resultsViewport.textContent === '0') {
+            clearResults();
+            resultsViewport.textContent = 7;
+        } else {
+            resultsViewport.textContent += 7;
+        }
     }
-
 });
 
 const eight = document.querySelector('#eight');
 
 eight.addEventListener('click', () => { 
     if(resultsViewport.textContent.length < maxLength) {
-        resultsViewport.textContent += 8;
-        //feedViewport.textContent += 8;
-    } 
-
+        if(resultsViewport.textContent === '0') {
+            clearResults();
+            resultsViewport.textContent = 8;
+        } else {
+            resultsViewport.textContent += 8;
+        }
+    }
 });
 
 const nine = document.querySelector('#nine');
 
 nine.addEventListener('click', () => { 
     if(resultsViewport.textContent.length < maxLength) {
-        resultsViewport.textContent += 9;
-        //feedViewport.textContent += 9;
-    } 
-
+        if(resultsViewport.textContent === '0') {
+            clearResults();
+            resultsViewport.textContent = 9;
+        } else {
+            resultsViewport.textContent += 9;
+        }
+    }
 });
 
 const zero = document.querySelector('#zero');
 
 zero.addEventListener('click', () => { 
     if(resultsViewport.textContent.length < maxLength) {
-        resultsViewport.textContent += 0;
-        //feedViewport.textContent += 0;
-    } 
-
+        if(resultsViewport.textContent === '0') {
+            clearResults();
+            resultsViewport.textContent = 0;
+        } else {
+            resultsViewport.textContent += 0;
+        }
+    }
 });
 
 function clearViewports() {
@@ -143,12 +175,14 @@ function clearViewports() {
 }
 
 function clearResults() {
-    resultsViewport.textContent = '';
+    resultsViewport.textContent = '0';
 }
 
 function clearFeed() {
     feedViewport.textContent = '';
 }
+
+let expression = [];
 
 const addButton = document.querySelector('#add');
 const subtractButton = document.querySelector('#subtract');
@@ -160,30 +194,17 @@ const clear = document.querySelector('#clear');
 
 clear.addEventListener('click', () => {
     clearViewports();
+    expression = [];
 });
 
-let tempOperand = 0;
-
 addButton.addEventListener('click', () => {
-    if (feedViewport.textContent.includes('=')) {}
-    if (resultsViewport.textContent != '') {
-        tempOperand = parseInt(resultsViewport.textContent);
+    let displayText = parseInt(resultsViewport.textContent);
+    feedViewport.textContent += `${displayText} + `;
+    if(feedViewport.textContent !== ''){
+        clearResults();
     }
-    feedViewport.textContent += ` ${tempOperand} + `;
-    clearResults();
 });
 
 equals.addEventListener('click', () => {
-    if (feedViewport.textContent === '') {
-
-    } else if (!feedViewport.textContent.endsWith('. ')) {
-        let secondOperand = 0;
-        if (resultsViewport.textContent != '') {
-            secondOperand = parseInt(resultsViewport.textContent);
-        }
-        let solution = operate('+', secondOperand, tempOperand);
-        feedViewport.textContent += `${secondOperand} = ${solution}. `;
-        resultsViewport.textContent = `${solution}`;
-    }
 });
 
