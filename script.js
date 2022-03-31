@@ -31,7 +31,7 @@ const operate = (op, x, y) => {
     }
 }
 
-const maxLength = 18;
+const maxLength = 16;
 
 const resultsViewport = document.querySelector('#results-viewport')
 resultsViewport.textContent = '';
