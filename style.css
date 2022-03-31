@@ -1,0 +1,18 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#results-viewport {
+    border: 1px solid black;
+    width: 400px;
+    height: 20px;
+    margin: 10px 0px;
+}
+
+#feed-viewport {
+    border: 1px solid black;
+    width: 400px;
+    height: 80px;
+    margin: 10px 0px;
+    overflow: auto;
+}
